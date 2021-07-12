@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "./login/slices/isLoggedSlice";
+import { login } from "../features/slices/isLoggedSlice";
 
 function RegisterForm(props) {
   const isLogged = useSelector((state) => state.isLogged.value);
   const dispatch = useDispatch();
+
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleRegister(e) {
+    // e.preventDefault();
+    console.log(username);
+    console.log(password);
+    dispatch(
+      login({
+        username: username,
+        password: password,
+      })
+    );
+  }
 
   return (
     <form>
@@ -17,6 +32,7 @@ function RegisterForm(props) {
             name="username"
             className="login-input"
             placeholder="Username"
+            onChange={(e) => setUserName(e.target.value)}
           />
         </div>
 
@@ -27,14 +43,11 @@ function RegisterForm(props) {
             name="password"
             className="login-input"
             placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
-        <button
-          type="button"
-          className="register-btn"
-          onClick={() => dispatch(login())}
-        >
+        <button type="button" className="register-btn" onClick={handleRegister}>
           Register
         </button>
       </div>

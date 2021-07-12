@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { openLogin, closeLogin } from "./login/slices/isLoginOpen";
-import { openRegister, closeRegister } from "./login/slices/isRegisterOpen";
+import { openLogin, closeLogin } from "../features/slices/isLoginOpen";
+import {
+  openRegister,
+  closeRegister,
+} from "../features//slices/isRegisterOpen";
 
 function ButtonController(props) {
   const isLoginOpen = useSelector((state) => state.isLoginOpen.value);

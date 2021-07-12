@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import isLoggedReducer from "./features/login/slices/isLoggedSlice";
-import isLoginOpenReducer from "./features/login/slices/isLoginOpen";
-import isRegisterOpenReducer from "./features/login/slices/isRegisterOpen";
-import userReducer from "./features/login/userSlice";
+import isLoggedReducer from "./features/slices/isLoggedSlice";
+import isLoginOpenReducer from "./features/slices/isLoginOpen";
+import isRegisterOpenReducer from "./features/slices/isRegisterOpen";
+import userReducer from "./features/userSlice";
 
 export default configureStore({
   reducer: {
