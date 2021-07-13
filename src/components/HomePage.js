@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../features/slices/isLoggedSlice";
+import { logout } from "../features/slices/userSlice";
+import AnimeList from "./AnimeList";
 
 function HomePage(props) {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function HomePage(props) {
       >
         Log Out
       </button>
+      <AnimeList />
     </div>
   );
 }

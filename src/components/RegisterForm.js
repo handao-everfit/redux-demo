@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { login } from "../features/slices/isLoggedSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../features/slices/userSlice";
 
 function RegisterForm(props) {
-  const isLogged = useSelector((state) => state.isLogged.value);
   const dispatch = useDispatch();
 
   const [username, setUserName] = useState("");
@@ -17,6 +16,7 @@ function RegisterForm(props) {
       login({
         username: username,
         password: password,
+        isLogged: true,
       })
     );
   }

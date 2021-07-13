@@ -4,13 +4,17 @@ import RegisterForm from "./components/RegisterForm";
 import ButtonController from "./components/ButtonController";
 import HomePage from "./components/HomePage";
 
-import { useSelector, useDispatch, connect } from "react-redux";
+import { useSelector, connect } from "react-redux";
 
 function App() {
   const isLoginOpen = useSelector((state) => state.isLoginOpen.value);
   const isRegisterOpen = useSelector((state) => state.isRegisterOpen.value);
-  const isLogged = useSelector((state) => state.isLogged.value);
-  const user = useSelector((state) => state.user);
+
+  const user = useSelector((state) => state.user.user);
+  let isLogged = false;
+  if (user) {
+    isLogged = user.isLogged;
+  }
 
   return (
     <div className="App">
