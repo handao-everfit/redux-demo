@@ -1,15 +1,22 @@
 import "./App.css";
-import LoginForm from "./components/LoginForm";
-import RegisterForm from "./components/RegisterForm";
-import ButtonController from "./components/ButtonController";
-import HomePage from "./components/HomePage";
+
+import HomePage from "./pages/HomePage";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 
 import { useSelector, connect } from "react-redux";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
-  const isLoginOpen = useSelector((state) => state.isLoginOpen.value);
-  const isRegisterOpen = useSelector((state) => state.isRegisterOpen.value);
-
   const user = useSelector((state) => state.user.user);
   let isLogged = false;
   if (user) {
@@ -17,12 +24,24 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {!isLogged && <ButtonController />}
-      {isLoginOpen && !isLogged && <LoginForm />}
-      {isRegisterOpen && !isLogged && <RegisterForm />}
-      {isLogged && <HomePage />}
-    </div>
+    <Router>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() =>
+            isLogged ? <Redirect to="/home" /> : <Redirect to="/login" />
+          }
+        />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/register" component={RegisterPage} />
+        <Route
+          exact
+          path="/home"
+          component={() => <HomePage isLogged={isLogged} />}
+        />
+      </Switch>
+    </Router>
   );
 }
 

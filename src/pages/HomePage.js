@@ -1,11 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../features/slices/userSlice";
-import AnimeList from "./AnimeList";
+import { logout } from "../redux/userSlice";
+import AnimeList from "../components/AnimeList";
+import { Redirect } from "react-router-dom";
 
-function HomePage(props) {
+function HomePage({ isLogged }) {
   const dispatch = useDispatch();
 
+  if (!isLogged) {
+    return <Redirect to="/login" />;
+  }
   return (
     <div>
       <h1>Welcome! You're in!</h1>

@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-// import { login, logout } from "./slices/isLoggedSlice";
+import { useDispatch } from "react-redux";
 
-import { login } from "../features/slices/userSlice";
+import { login } from "../redux/userSlice";
 
-function LoginForm(props) {
-  // const user = useSelector((state) => state.user);
-
+function LoginForm({ onSubmit }) {
   const dispatch = useDispatch();
 
   const [username, setUserName] = useState("");
@@ -24,14 +21,15 @@ function LoginForm(props) {
         isLogged: true,
       })
     );
+
+    onSubmit();
   }
 
   return (
-    <form>
+    <form className="login-form">
       <div className="header">Login</div>
       <div className="box">
-        <div className="input-group">
-          <label>Username</label>
+        <div className="input-field">
           <input
             type="text"
             name="username"
@@ -41,8 +39,7 @@ function LoginForm(props) {
           />
         </div>
 
-        <div className="input-group">
-          <label>Password</label>
+        <div className="input-field">
           <input
             type="text"
             name="password"
@@ -57,8 +54,6 @@ function LoginForm(props) {
         </button>
       </div>
     </form>
-
-    // <h1>{isLogged ? "Welcome" : "Please Login!"}</h1>
   );
 }
 

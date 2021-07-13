@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../features/slices/userSlice";
+import { login } from "../redux/userSlice";
 
-function RegisterForm(props) {
+function RegisterForm({ onSubmit }) {
   const dispatch = useDispatch();
 
   const [username, setUserName] = useState("");
@@ -19,6 +19,8 @@ function RegisterForm(props) {
         isLogged: true,
       })
     );
+
+    onSubmit();
   }
 
   return (
