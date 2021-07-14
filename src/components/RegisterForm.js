@@ -44,7 +44,7 @@ function RegisterForm({ onSubmit }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit" className="register-btn" onClick={handleRegister}>
+        <button type="button" className="register-btn" onClick={handleRegister}>
           Register
         </button>
       </div>

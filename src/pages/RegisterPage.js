@@ -1,6 +1,6 @@
 import React from "react";
 import RegisterForm from "../components/RegisterForm";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function RegisterPage(props) {
   let history = useHistory();

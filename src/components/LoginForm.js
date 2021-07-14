@@ -9,26 +9,41 @@ function LoginForm({ onSubmit }) {
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  let storedData = {};
+
+  fetch("http://localhost:3000/users")
+    .then((response) => response.json())
+    .then((data) => {
+      storedData = data[0];
+    });
 
   function handleLogin(e) {
     // e.preventDefault();
-    console.log(username);
-    console.log(password);
 
-    dispatch(
-      login({
-        username: username,
-        password: password,
-        isLogged: true,
-      })
-    );
+    console.log(storedData);
 
-    onSubmit();
+    if (username === storedData.username && password === storedData.password) {
+      dispatch(
+        login({
+          username: username,
+          password: password,
+          isLogged: true,
+        })
+      );
+      onSubmit();
+    } else {
+      alert("Wrong password or username!");
+    }
   }
 
   return (
     <form className="form">
       <div className="form-header">Login</div>
+      <box>
+        <h5>Username: admin</h5>
+        <h5>Password: admin</h5>
+      </box>
+
       <div className="box">
         <input
           type="text"
@@ -46,7 +61,7 @@ function LoginForm({ onSubmit }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit" className="login-btn" onClick={handleLogin}>
+        <button type="button" className="login-btn" onClick={handleLogin}>
           Login
         </button>
       </div>
