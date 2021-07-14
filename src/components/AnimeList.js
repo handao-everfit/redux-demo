@@ -32,7 +32,7 @@ function AnimeList(props) {
     return <div>Loading...</div>;
   } else {
     return (
-      <ul>
+      <ul className="anime-list">
         {articles &&
           articles.map((item) => (
             <li key={articles.indexOf(item)}>

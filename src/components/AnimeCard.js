@@ -2,13 +2,17 @@ import React from "react";
 
 function AnimeCard({ title, url, imageUrl }) {
   return (
-    <div>
-      <h1>{title}</h1>
-      <button>
-        {" "}
-        <a href={url}>Read</a>
-      </button>
-      <img alt="preview" src={imageUrl}></img>
+    <div className="anime-card">
+      <div className="img-container">
+        <img alt="preview" src={imageUrl} className="card-img"></img>
+      </div>
+
+      <div className="info-container">
+        <h1 className="card-title">{title}</h1>
+        <button className="read-btn">
+          <a href={url}>Read</a>
+        </button>
+      </div>
     </div>
   );
 }
