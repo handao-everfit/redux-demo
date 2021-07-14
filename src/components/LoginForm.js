@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { login } from "../redux/userSlice";
+import { Link } from "react-router-dom";
 
 function LoginForm({ onSubmit }) {
   const dispatch = useDispatch();
@@ -26,33 +27,33 @@ function LoginForm({ onSubmit }) {
   }
 
   return (
-    <form className="login-form">
-      <div className="header">Login</div>
+    <form className="form">
+      <div className="form-header">Login</div>
       <div className="box">
-        <div className="input-field">
-          <input
-            type="text"
-            name="username"
-            className="login-input"
-            placeholder="Username"
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          name="username"
+          className="form-field"
+          placeholder="Username"
+          onChange={(e) => setUserName(e.target.value)}
+        />
 
-        <div className="input-field">
-          <input
-            type="text"
-            name="password"
-            className="login-input"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          name="password"
+          className="form-field"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <button type="button" className="login-btn" onClick={handleLogin}>
+        <button type="submit" className="login-btn" onClick={handleLogin}>
           Login
         </button>
       </div>
+      <h4>
+        {"Don't have an account? "}
+        <Link to="/register">Register</Link>
+      </h4>
     </form>
   );
 }

@@ -6,7 +6,7 @@ function RegisterPage(props) {
   let history = useHistory();
 
   return (
-    <div>
+    <div className="register-page">
       <RegisterForm
         onSubmit={() => {
           history.push("/home");

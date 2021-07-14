@@ -6,16 +6,12 @@ function LoginPage(props) {
   let history = useHistory();
 
   return (
-    <div>
+    <div className="login-page">
       <LoginForm
         onSubmit={() => {
           history.push("/home");
         }}
       />
-      <h3>
-        Don't have an account?
-        <Link to="/register">Register</Link>
-      </h3>
     </div>
   );
 }
