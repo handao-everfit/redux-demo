@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/userSlice";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function RegisterForm({ onSubmit }) {
   const dispatch = useDispatch();
@@ -20,6 +21,25 @@ function RegisterForm({ onSubmit }) {
         isLogged: true,
       })
     );
+
+    // axios({
+    //   method: "post",
+    //   url: "http://localhost:3000/users",
+    //   data: {
+    //     username: username,
+    //     password: password,
+    //   },
+    // })
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.error(err));
+
+    axios
+      .post("http://localhost:3000/users", {
+        username: username,
+        password: password,
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
 
     onSubmit();
   }

@@ -18,10 +18,8 @@ function LoginForm({ onSubmit }) {
   //     storedData = data[0];
   //   });
 
-  axios({
-    method: "get",
-    url: "http://localhost:3000/users",
-  })
+  axios
+    .get("http://localhost:3000/users")
     .then((res) => (storedData = res.data))
     .catch((err) => console.error(err));
 
@@ -51,10 +49,6 @@ function LoginForm({ onSubmit }) {
   return (
     <form className="form">
       <div className="form-header">Login</div>
-      <div>
-        <h5>Username: admin</h5>
-        <h5>Password: admin</h5>
-      </div>
 
       <div className="box">
         <input
