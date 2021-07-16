@@ -3,35 +3,47 @@ import { useDispatch } from "react-redux";
 
 import { login } from "../redux/userSlice";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function LoginForm({ onSubmit }) {
   const dispatch = useDispatch();
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  let storedData = {};
+  let storedData = [];
 
-  fetch("http://localhost:3000/users")
-    .then((response) => response.json())
-    .then((data) => {
-      storedData = data[0];
-    });
+  // fetch("http://localhost:3000/users")
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     storedData = data[0];
+  //   });
+
+  axios({
+    method: "get",
+    url: "http://localhost:3000/users",
+  })
+    .then((res) => (storedData = res.data))
+    .catch((err) => console.error(err));
 
   function handleLogin(e) {
     // e.preventDefault();
+    let auth = false;
+    storedData.forEach((user) => {
+      if (user.username === username && password === user.password) {
+        dispatch(
+          login({
+            username: username,
+            password: password,
+            isLogged: true,
+          })
+        );
+        onSubmit();
+        auth = true;
+        return;
+      }
+    });
 
-    console.log(storedData);
-
-    if (username === storedData.username && password === storedData.password) {
-      dispatch(
-        login({
-          username: username,
-          password: password,
-          isLogged: true,
-        })
-      );
-      onSubmit();
-    } else {
+    if (!auth) {
       alert("Wrong password or username!");
     }
   }
@@ -39,10 +51,10 @@ function LoginForm({ onSubmit }) {
   return (
     <form className="form">
       <div className="form-header">Login</div>
-      <box>
+      <div>
         <h5>Username: admin</h5>
         <h5>Password: admin</h5>
-      </box>
+      </div>
 
       <div className="box">
         <input

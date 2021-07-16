@@ -13,6 +13,7 @@ function AnimeList(props) {
         (result) => {
           setIsLoaded(true);
           setItems(result);
+          console.log(result);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -40,6 +41,8 @@ function AnimeList(props) {
                 title={item.title}
                 url={item.url}
                 imageUrl={item.image_url}
+                authorName={item.author_name}
+                intro={item.intro}
               />
             </li>
           ))}

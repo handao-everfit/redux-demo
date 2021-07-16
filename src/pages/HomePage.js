@@ -11,16 +11,20 @@ function HomePage({ isLogged }) {
     return <Redirect to="/login" />;
   }
   return (
-    <div>
-      <h1>Welcome! You're in!</h1>
-      <button
-        onClick={() => {
-          dispatch(logout());
-          console.log("logging out");
-        }}
-      >
-        Log Out
-      </button>
+    <div className="home-body">
+      <header>
+        <h1>Anime News</h1>
+        <button
+          className="logout-btn"
+          onClick={() => {
+            dispatch(logout());
+            console.log("logging out");
+          }}
+        >
+          Log Out
+        </button>
+      </header>
+      <h1 className="home-title">Lastest Update</h1>
       <AnimeList />
     </div>
   );
