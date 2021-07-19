@@ -139,6 +139,14 @@ header {
   font-size: 20px;
 }
 
+.pdf-btn {
+  background-color: rgb(128, 125, 107);
+  color: rgb(255, 255, 255);
+  padding: 7px 20px;
+  border: none;
+  font-size: 13px;
+}
+
 .read-btn:hover {
   color: rgb(189, 167, 60);
 }
